@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', function(){
+	return view('pages.home');
+});
+
+Route::get('/about', function(){
+	return view('pages.about');
+});
+Route::get('/contact', function(){
+	return view('pages.contact');
+});
+
+Route::resource('cv', 'MycvController');
+Route::get('{passport}/{name}', 'MycvController@show');
+
+Route::post('{passport}/{name}/photos', ['as' => 'store_photo_path', 'uses' => 'MycvController@addPhoto']);
+
+
+

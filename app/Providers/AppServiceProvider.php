@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+         view()->composer('*', function ($view) {
+        return $view->with('signedIn', auth()->check());
+      });
+
     }
 
     /**
